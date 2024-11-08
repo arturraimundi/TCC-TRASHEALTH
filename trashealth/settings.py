@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'trashealth.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Trashealth',
+        'NAME': 'trashealth',
         'USER': 'root',
-        'PASSWORD': 'ath1214.com',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '3306',
     }    

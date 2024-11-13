@@ -4,4 +4,4 @@ from .models import PontodeColeta
 class PontodeColetaForm(forms.ModelForm):
     class Meta:
         model = PontodeColeta
-        fields = ['titulo', 'local', 'descricao', 'imagem']
+        fields = ['titulo', 'local', 'descricao', 'imagem', 'coordenadaX', 'coordenadaY']

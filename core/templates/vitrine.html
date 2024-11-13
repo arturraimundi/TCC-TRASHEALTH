@@ -14,30 +14,29 @@
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th scope="row">Titutlo</th>
+                    <th scope="row">Tituto</th>
                     <th scope="row">local</th>
-                    <th scope="row">descricao</th>
+                    <th scope="row">descrição</th>
                     <th scope="row">imagem</th>
                 </tr>
             </thead>
             <tbody>
                 {% for i in vitrine %}
-                    <tr>
-                        <td scope="row">
-                            {{i.titulo}}
-                        </td>
-                        <td scope="row">
-                            {{i.local}}
-                        </td>
-                        <td scope="row">
-                            {{i.descricao}}
-                        </td>
-                        <td scope="row">
-                            {{i.imagem}}
-                        </td>
-
-                    </tr>
-                {% endfor %}
+                <tr>
+                    <td scope="row">
+                        {{ i.titulo }}
+                    </td>
+                    <td scope="row">
+                        {{ i.local }}
+                    </td>
+                    <td scope="row">
+                        {{ i.descricao }}
+                    </td>
+                    <td scope="row">
+                        {{ i.imagem }}
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>

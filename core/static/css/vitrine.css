@@ -1,0 +1,16 @@
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+}
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+}

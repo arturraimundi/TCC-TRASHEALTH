@@ -18,11 +18,12 @@
             <div class="carousel-inner">
                 {% for i in vitrine %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                        <img src="{{ i.imagem.url }}" class="d-block w-100" alt="Imagem de {{ i.titulo }}">
+                        <img src="{{ i.imagem }}" class="d-block w-100" alt="Imagem de {{ i.titulo }}">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ i.titulo }}</h5>
                             <p><strong>Local:</strong> {{ i.local }}</p>
                             <p><strong>Descrição:</strong> {{ i.descricao }}</p>
+                            <td scope="row">{{i.imagem}}</td>
                            
                         </div>
                     </div>

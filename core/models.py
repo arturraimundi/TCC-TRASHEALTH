@@ -9,8 +9,8 @@ class PontodeColeta(models.Model):
     local = models.CharField('Endereço do ponto de coleta', max_length=200, blank=False)
     descricao = models.CharField(max_length=255, default='Default Description')
     imagem = StdImageField('imagem do local', upload_to='local_de_coleta', variations={'thumb':(250,250)})
-    coordenadaX = models.CharField('coordenada X no mapa', max_length=255, default='Default X')
-    coordenadaY = models.CharField('coordenada Y no mapa', max_length=255, default='Default Y')
+    coordenadaX = models.FloatField('coordenada X no mapa', max_length=255, default='Default X')
+    coordenadaY = models.FloatField('coordenada Y no mapa', max_length=255, default='Default Y')
     
 
 

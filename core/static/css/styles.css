@@ -53,7 +53,7 @@ body {
 .section1 {
     width: 99.1;
     height: 55vw;
-    background-image: url(/img/1.jpg);
+    background-image: url(../img/1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -153,14 +153,14 @@ body {
 }
 
 .section3 {
-    background-image: url(/img/mano.png);
+    background-image: url(../img/mano.png);
     background-repeat: no-repeat;
     background-position: right;
     background-size: 10vw;
 }
 
 .section4 {
-    background-image: url(/img/mano2.png);
+    background-image: url(../img/mano2.png);
     background-repeat: no-repeat;
     background-position: left;
     background-size: 10vw;

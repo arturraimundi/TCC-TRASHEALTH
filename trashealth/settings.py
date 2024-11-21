@@ -10,12 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+MEDIA_URL = '/local_de_coleta/'  # URL base para acessar os arquivos de media
+MEDIA_ROOT = os.path.join(BASE_DIR, 'local_de_coleta/local_de_coleta')  # Diretório onde as imagens serão salvas
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -70,6 +72,7 @@ TEMPLATES = [
         },
     },
 ]
+  
 
 WSGI_APPLICATION = 'trashealth.wsgi.application'
 
@@ -126,9 +129,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [ BASE_DIR / "static", ]
+STATICFILES_DIRS = [ BASE_DIR / "core/static/", ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]

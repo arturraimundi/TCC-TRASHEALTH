@@ -65,11 +65,12 @@ def register(request):
 
         if user:
             return HttpResponse('Já existe o usuário com esse CNPJ ou Email')
+
         
         user = User.objects.create_user(username=username, first_name=first_name, email=email, password=senha)
         user.save()
 
-        return HttpResponse('usuário cadastrado com sucesso')
+        return render(request, 'login.html')
      
 
 def login(request):

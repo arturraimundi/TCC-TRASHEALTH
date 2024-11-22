@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from .forms import PontodeColetaForm, LoginForm
+from .forms import PontodeColetaForm
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from .models import PontodeColeta
 from django.http import HttpResponse
 import json
@@ -60,19 +61,41 @@ def pontomapa(request):
     return render(request, 'mapa.html', context)
 
 
-def login_view(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=email, password=password)  # Certifique-se de que o campo "username" do usuário é o e-mail
-            if user is not None:
-                login(request, user)
-                return redirect('index')  # Redireciona para a página inicial ou painel do usuário
-            else:
-                messages.error(request, "Credenciais inválidas. Tente novamente.")
-    else:
-        form = LoginForm()
+def perfil(request):
+     return render(request, 'perfil.html')
+    
 
-    return render(request, 'login.html', {'form': form})
+
+def register(request):
+    if request.method == "GET":
+        return render(request, 'register.html')
+    else:
+        username = request.POST.get('username')
+        first_name = request.POST.get('first_name')
+        email = request.POST.get('email')
+        senha = request.POST.get('password')
+
+        user = User.objects.filter(username=username).first() or User.objects.filter(email=email).first()
+
+        if user:
+            return HttpResponse('Já existe o usuário com esse CNPJ ou Email')
+        
+        user = User.objects.create_user(username=username, first_name=first_name, email=email, password=senha)
+        user.save()
+
+        return HttpResponse('usuário cadastrado com sucesso')
+     
+
+def login(request):
+         if request.method == "GET":
+            return render(request, 'login.html')
+         else:
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(username=username, password=password)
+
+         if user: 
+            return HttpResponse('Autenticado')
+         else:
+            return HttpResponse('Email ou senha inválido')

@@ -2,23 +2,29 @@
 <html lang="pt-BR">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+
     <title>TrasHealth</title>
-    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@1,900&display=swap');
+    </style>
+    <link rel="icon" href="./img/logo.png" type="image/x-icon">
 </head>
 
 <body>
-    <div class="cadastro-form">
-        <b>
-            <a class="a" href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
-        </b>
-        <form id="form-cadastro" method="post">
-            {% csrf_token %}
-            {{ form.as_p }} <!-- Renderiza os campos do formulário com os widgets configurados -->
-            <input type="submit" value="Entrar" id="entrar" class="btn btn-primary">
-        </form>
-        <div class="slaoq"><a href="{% url 'register' %}">Crie sua conta</a></div>
-    </div>
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label>Digite o CNPJ da empresa cadastrada</label>
+        <input name="username" class="form-control" type="text" placeholder="CNPJ da empresa..">
+        <br>
+        <br>
+        <br>
+        <label>Senha:</label>
+        <input name="password" class="form-control" type="password" placeholder="Senha...">
+        <br>
+        <br>
+        <input class="btn btn-success btn-lg" type="submit" value="Logar">
+    </form>
 </body>
 
 </html>

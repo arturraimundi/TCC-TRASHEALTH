@@ -17,3 +17,14 @@ class PontodeColeta(models.Model):
     def __str__(self):
         return self.titulo
     
+
+class user(models.Model):
+    nome = models.CharField('Nome da Empresa', max_length=100, blank=False)
+    cnpj = models.CharField('CNPJ', max_length=100, blank=False)
+    email = models.CharField('Email', max_length=100, blank=False, primary_key=True)
+    senha = models.CharField('Senha', max_length=100, blank=False)
+    descricao = models.CharField('Descricão da empresa', max_length=100, blank=True)
+    servicos = models.CharField('serviços prestados', max_length=100, blank=True)
+
+    def __str__(self):
+        return self.nome

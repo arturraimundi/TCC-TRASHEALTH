@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/perfil.css">
+    <link rel="icon" href="./img/logo.png" type="image/x-icon">
+    <title>TrasHealth</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@1,900&display=swap');
+    </style>
+</head>
+<header class="header1">
+    <a href="/index.html" class="infos"><img src="./img/logo3.png" alt="" class="logo"></a>
+    <a href="/qmsomos.html" class="infos">QUEM SOMOS NOS?</a>
+    <a href="/mapa.html" class="infos">MAPA</a>
+    <a href="/vitrine" class="infos">VITRINE</a>
+    <a href="/sac" class="infos">SAC</a>
+    <a href="/login" class="botao">ENTRAR</a>
+</header>
+
+<body>
+    <sec class="section1">
+        <div class="infosperf">
+            <div class="txt">
+                <h1 class="titulo">
+                    Seja bem vindo {{user.first_name}}
+                </h1>
+            </div>
+            <div class="txt">
+                <h1 class="titulo">
+                    Sobre a empresa:
+                </h1>
+                <h2 class="txt-info">
+                    {{user.descricao}}
+                </h2>
+            </div>
+            <div class="txt">
+                <h1 class="titulo">
+                    ServiçosS:
+                </h1>
+                <h2 class="txt-info">
+                    {{username.username}}
+                </h2>
+            </div>
+
+        </div>
+
+    </sec>
+</body>
+
+</html>

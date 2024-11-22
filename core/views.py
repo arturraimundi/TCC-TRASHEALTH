@@ -2,14 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import PontodeColetaForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout
 from .models import PontodeColeta
 from django.http import HttpResponse
 import json
+from django.contrib.auth.decorators import login_required
+
+
 
 def index(request):
-        
-
         return render(request, 'index.html')
 
 def mapa(request):
@@ -18,29 +20,14 @@ def mapa(request):
 def sac(request):
        return render(request, 'sac.html')
 
-def CadastrodePontos(request):
-    if request.method == 'POST':
-        form = PontodeColetaForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            form = PontodeColetaForm()
-            messages.success(request, 'Produto Salvo com sucesso.')
-           
-            return redirect('vitrine')
-            
-        else:
-            #messages.error(request, 'Erro ao salvar o produto')
-            return HttpResponse('Os Dados não foram enviados')
-    else:
-        form = PontodeColetaForm()
-    context = {
-        'form': form
-    }
-    return render(request, 'cadastropontos.html', context)
+
+
+  
+
 
 def vitrine(request):
     context = {
-        'vitrine': PontodeColeta.objects.all()  # Altere 'local' para 'vitrine'
+        'vitrine': PontodeColeta.objects.all()  
     }
     return render(request, 'vitrine.html', context)
 
@@ -61,8 +48,7 @@ def pontomapa(request):
     return render(request, 'mapa.html', context)
 
 
-def perfil(request):
-     return render(request, 'perfil.html')
+
     
 
 
@@ -87,15 +73,59 @@ def register(request):
      
 
 def login(request):
-         if request.method == "GET":
-            return render(request, 'login.html')
-         else:
-            username = request.POST.get('username')
-            password = request.POST.get('password')
+    if request.method == "GET":
+        return render(request, 'login.html')
+    else:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-            user = authenticate(username=username, password=password)
+        # Autenticar o usuário
+        user = authenticate(request, username=username, password=password)
 
-         if user: 
-            return HttpResponse('Autenticado')
-         else:
-            return HttpResponse('Email ou senha inválido')
+        if user:
+            auth_login(request, user)  # Registra o login na sessão
+            return redirect('perfil')  # Redireciona para a view de perfil
+        else:
+            return HttpResponse('Email ou senha inválidos')
+         
+
+@login_required
+def CadastrodePontos(request):
+    if request.user.is_authenticated:
+        print('autenticado')
+    # Do something for authenticated users.
+        if request.method == 'POST':
+            form = PontodeColetaForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                form = PontodeColetaForm()
+                messages.success(request, 'Produto Salvo com sucesso.')
+            
+                return redirect('vitrine')
+                
+            else:
+                #messages.error(request, 'Erro ao salvar o produto')
+                return HttpResponse('Os Dados não foram enviados')
+        else:
+            form = PontodeColetaForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'cadastropontos.html', context)
+   
+    else:
+        return render(request, 'login.html')
+    
+
+
+@login_required
+def perfil(request):
+     username = request.user.username
+     first_name = request.user.first_name
+     return render(request, 'perfil.html',  {'username': username, 'first_name': first_name})
+
+
+def sair(request):
+    logout(request)  # Remove o usuário da sessão
+    return redirect('login')  # Redireciona para a página de login
+#programar dps essa birosca

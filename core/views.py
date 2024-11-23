@@ -8,6 +8,9 @@ from .models import PontodeColeta
 from django.http import HttpResponse
 import json
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 
 
@@ -66,18 +69,20 @@ def register(request):
         user = User.objects.filter(username=username).first() or User.objects.filter(email=email).first()
 
         if user:
-            return HttpResponse('Já existe o usuário com esse CNPJ ou Email')
+            # Passa a mensagem de erro para o template
+            return render(request, 'register.html', {'error_message': 'Já existe o usuário com esse CNPJ ou Email'})
 
-        
+        # Cria o novo usuário
         user = User.objects.create_user(username=username, first_name=first_name, email=email, password=senha)
         user.save()
 
+        # Redireciona para a página de login
         return render(request, 'login.html')
      
 
 def login(request):
     if request.method == "GET":
-        return render(request, 'login.html')
+        return render(request, 'login.html')  # Exibe o formulário de login
     else:
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -89,7 +94,8 @@ def login(request):
             auth_login(request, user)  # Registra o login na sessão
             return redirect('perfil')  # Redireciona para a view de perfil
         else:
-            return HttpResponse('Email ou senha inválidos')
+            # Passa a mensagem de erro para o template
+            return render(request, 'login.html', {'error_message': 'Email ou senha inválidos'})
          
 
 @login_required

@@ -20,6 +20,8 @@ def mapa(request):
 def sac(request):
        return render(request, 'sac.html')
 
+def nos(request):
+       return render(request, 'nos.html')
 
 
   

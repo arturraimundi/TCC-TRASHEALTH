@@ -1,18 +1,18 @@
 {% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de usuário</title>
     {% bootstrap_css %}
 </head>
+
 <body>
     <div class="container">
-        <h1>Cadastro de usuário</h1>  
+        <h1>Cadastro de usuário</h1>
         {% bootstrap_messages %}
-
-        <h1>Cadastro</h1>
         <form method="POST" action="{% url 'register' %}">
             {% csrf_token %}
             <label>CNPJ da empresa:</label>
@@ -35,6 +35,7 @@
         </form>
 
     </div>
-{% bootstrap_javascript jquery='full' %}
+    {% bootstrap_javascript jquery='full' %}
 </body>
+
 </html>

@@ -16,14 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from core.views import index, CadastrodePontos, vitrine, mapa, sac, login, perfil, register
+from core.views import index, CadastrodePontos, vitrine, mapa, sac, login, perfil, register, nos
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin/', admin.site.urls),
-    path('', index),
+    path('index', index),
     path('CadastrodePontos', CadastrodePontos, name='CadastrodePontos'),
     path('vitrine', vitrine, name='vitrine'),
     path('mapa', mapa, name='mapa'),
@@ -31,7 +31,7 @@ urlpatterns = [
     path('login', login, name="login"),
     path('register', register, name="register"),
     path('perfil', perfil, name='perfil'),
-   
+    path('nos', nos, name='nos'),
 ]
 
 if settings.DEBUG:

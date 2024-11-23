@@ -46,40 +46,6 @@
 }
 
 body {
-    background-image: url(../img/fundomapa.jpg);
+    background-color: #323272;
 
-}
-
-
-.container {
-    max-width: 1200px;
-    margin: auto;
-    justify-content: center;
-}
-.carousel-item img {
-    width: 100%;
-    height: auto;
-    max-height: 100vw;
-    object-fit: cover;
-    scale: 80%;
-}
-.carousel-caption {
-    padding: 0 7vw;
-    font-size: xx-large;
-}
-.textoo{
-    text-align: center;
-    padding-top: 2vw;
-}
-.carousel-control-prev{
-   display: none;
-}
-.visually-hidden{
-    display: none;
-}
-.carousel-control-next{
-    display: none;
-}
-.textoo-dentro{
-    color: #323272;
 }

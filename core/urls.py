@@ -19,7 +19,7 @@ from django.urls import include, path
 from core.views import index, CadastrodePontos, vitrine, mapa, sac, login, perfil, register, nos
 from django.conf.urls.static import static
 from django.conf import settings
-
+from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin/', admin.site.urls),
@@ -32,6 +32,7 @@ urlpatterns = [
     path('register', register, name="register"),
     path('perfil', perfil, name='perfil'),
     path('nos', nos, name='nos'),
+    path('excluir_ponto/<int:ponto_id>/', views.excluir_ponto, name='excluir_ponto'),
 ]
 
 if settings.DEBUG:

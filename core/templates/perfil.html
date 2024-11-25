@@ -26,10 +26,28 @@
     <sec class="section1">
       <div class="infosperf">
         <div class="txt">
-          <h1 class="titulo">Seja bem vindo {{username}}</h1>
-          <h1 class="titulo">Seja bem vindo {{first_name}}</h1>
+          <h1 class="titulo">CNPJ: {{ username }}</h1>
+          <h1 class="titulo">Seja bem-vindo, {{ first_name }}</h1>
         </div>
-      </div>
+      </div>  
     </sec>
+    <div class="lista-pontos">
+      <h2 class="subtitulo">Pontos cadastrados:</h2>
+      <ul>
+        {% for ponto in pontos %}
+          <li>
+            {{ ponto }}
+            <form method="POST" action="{% url 'excluir_ponto' ponto.id %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit">Excluir</button>
+            </form>
+          </li>
+        {% empty %}
+          <li>Nenhum ponto cadastrado com este CNPJ.</li>
+        {% endfor %}
+      </ul>
+    </div>
+    
   </body>
+  
 </html>

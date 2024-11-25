@@ -11,7 +11,7 @@ class PontodeColeta(models.Model):
     imagem = StdImageField('imagem do local', upload_to='local_de_coleta', variations={'thumb':(250,250)})
     coordenadaX = models.FloatField('coordenada X no mapa', max_length=255, default='Default X')
     coordenadaY = models.FloatField('coordenada Y no mapa', max_length=255, default='Default Y')
-    
+    cnpj = models.CharField(max_length=255, default='Default Description')
 
 
     def __str__(self):

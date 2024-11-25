@@ -1,8 +1,9 @@
 * {
     font-family: "Rubik", sans-serif;
     margin: 0;
-    color: #323272;
+    color: rgb(83, 80, 80);
 }
+
 
 .logo {
     width: 50px;
@@ -26,6 +27,7 @@
     color: #f7a074;
     transform: scale(1.1);
     transition: 200ms;
+    text-decoration: none;
 }
 
 .botao {
@@ -42,10 +44,10 @@
     color: #323272;
     transform: scale(1.1);
     transition: 200ms;
-
+    text-decoration: none;
 }
 
 body {
     background-color: #323272;
-
+    background-image: url(../img/wllpapervitrine.jpg);
 }

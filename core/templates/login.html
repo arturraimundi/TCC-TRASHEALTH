@@ -8,6 +8,12 @@
       @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Rubik:ital,wght@1,900&display=swap");
     </style>
     <link rel="icon" href="../static/img/logo.png" type="image/x-icon" />
+    <script>
+      // Função para mostrar o pop-up de erro
+      function showErrorMessage(message) {
+          alert(message);  // Exibe um pop-up com a mensagem de erro
+      }
+  </script>
   </head>
 
   <body>
@@ -20,13 +26,13 @@
       <a href="vitrine" class="infos">VITRINE</a>
       <a href="sac" class="infos">SAC</a>
       <a href="login" class="botao">ENTRAR</a>
-      <a href="register" class="botao">Criar conta</a>
+      <a href="register" class="botao">CRIAR CONTA</a>
     </header>
     <div class="form">
       <form class="formm" method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         <div class="label">
-          <label>Digite o CNPJ da empresa cadastrada</label>
+          <label>DIGITE O CNPJ DA EMPRESA CADASTRADA</label>
         </div>
         <br />
         <input
@@ -38,7 +44,7 @@
         <br />
         <br />
         <br />
-        <div class="senha"><label>Senha:</label></div>
+        <div class="senha"><label>SENHA:</label></div>
         <input
           name="password"
           class="form-control"
@@ -49,6 +55,11 @@
         <br />
         <input class="btn btn-success btn-lg" type="submit" value="Logar" />
       </form>
+      {% if error_message %}
+      <script>
+          showErrorMessage("{{ error_message }}");
+      </script>
+      {% endif %}
     </div>
   </body>
 </html>
